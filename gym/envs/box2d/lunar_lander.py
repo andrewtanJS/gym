@@ -144,7 +144,10 @@ class LunarLander(gym.Env, EzPickle):
 
     metadata = {"render.modes": ["human", "rgb_array"], "video.frames_per_second": FPS}
 
-    def __init__(self, continuous: bool = False):
+    def __init__(self,
+                 render: str = "rgb_array",
+                 continuous: bool = False,
+                 ):
         EzPickle.__init__(self)
         self.screen = None
         self.isopen = True
@@ -155,6 +158,7 @@ class LunarLander(gym.Env, EzPickle):
 
         self.prev_reward = None
 
+        self.render = render
         self.continuous = continuous
 
         # useful range is -1 .. +1, but spikes can be higher

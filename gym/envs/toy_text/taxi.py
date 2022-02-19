@@ -106,7 +106,10 @@ class TaxiEnv(Env):
 
     metadata = {"render.modes": ["human", "ansi"]}
 
-    def __init__(self):
+    def __init__(self,
+                 render: str = "rgb_array",
+                 ):
+        self.render = render
         self.desc = np.asarray(MAP, dtype="c")
 
         self.locs = locs = [(0, 0), (0, 4), (4, 0), (4, 3)]

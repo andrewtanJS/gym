@@ -36,7 +36,10 @@ class CliffWalkingEnv(Env):
 
     metadata = {"render.modes": ["human", "ansi"]}
 
-    def __init__(self):
+    def __init__(self,
+                 render: str = "rgb_array",
+                 ):
+        self.render = render
         self.shape = (4, 12)
         self.start_state_index = np.ravel_multi_index((3, 0), self.shape)
 

@@ -4,8 +4,11 @@ from gym.envs.mujoco import mujoco_env
 
 
 class AntEnv(mujoco_env.MujocoEnv, utils.EzPickle):
-    def __init__(self):
-        mujoco_env.MujocoEnv.__init__(self, "ant.xml", 5)
+    def __init__(self,
+                 render: str = "rgb_array",
+                 ):
+        self.render = render
+        mujoco_env.MujocoEnv.__init__(self, "ant.xml", 5, render)
         utils.EzPickle.__init__(self)
 
     def step(self, a):

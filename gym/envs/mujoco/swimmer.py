@@ -4,8 +4,11 @@ from gym.envs.mujoco import mujoco_env
 
 
 class SwimmerEnv(mujoco_env.MujocoEnv, utils.EzPickle):
-    def __init__(self):
-        mujoco_env.MujocoEnv.__init__(self, "swimmer.xml", 4)
+    def __init__(self,
+                 render: str = "rgb_array",
+                 ):
+        self.render = render
+        mujoco_env.MujocoEnv.__init__(self, "swimmer.xml", 4, render)
         utils.EzPickle.__init__(self)
 
     def step(self, a):

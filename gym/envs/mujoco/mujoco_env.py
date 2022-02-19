@@ -43,13 +43,14 @@ def convert_observation_to_space(observation):
 class MujocoEnv(gym.Env):
     """Superclass for all MuJoCo environments."""
 
-    def __init__(self, model_path, frame_skip):
+    def __init__(self, model_path, frame_skip, render):
         if model_path.startswith("/"):
             fullpath = model_path
         else:
             fullpath = os.path.join(os.path.dirname(__file__), "assets", model_path)
         if not path.exists(fullpath):
             raise OSError(f"File {fullpath} does not exist")
+        self.render = render
         self.frame_skip = frame_skip
         self.model = mujoco_py.load_model_from_path(fullpath)
         self.sim = mujoco_py.MjSim(self.model)

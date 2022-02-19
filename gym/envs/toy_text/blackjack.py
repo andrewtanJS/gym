@@ -107,7 +107,12 @@ class BlackjackEnv(gym.Env):
 
     metadata = {"render.modes": ["human", "rgb_array"]}
 
-    def __init__(self, natural=False, sab=False):
+    def __init__(self,
+                 render: str = "rgb_array",
+                 natural: bool = False,
+                 sab: bool = False,
+                 ):
+        self.render = render
         self.action_space = spaces.Discrete(2)
         self.observation_space = spaces.Tuple(
             (spaces.Discrete(32), spaces.Discrete(11), spaces.Discrete(2))

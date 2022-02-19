@@ -78,7 +78,11 @@ class PendulumEnv(gym.Env):
 
     metadata = {"render.modes": ["human", "rgb_array"], "video.frames_per_second": 30}
 
-    def __init__(self, g=10.0):
+    def __init__(self,
+                 render: str = "rgb_array",
+                 g: float = 10.0,
+                 ):
+        self.render = render
         self.max_speed = 8
         self.max_torque = 2.0
         self.dt = 0.05

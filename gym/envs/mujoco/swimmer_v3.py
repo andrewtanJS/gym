@@ -124,6 +124,7 @@ class SwimmerEnv(mujoco_env.MujocoEnv, utils.EzPickle):
 
     def __init__(
         self,
+        render="rgb_array",
         xml_file="swimmer.xml",
         forward_reward_weight=1.0,
         ctrl_cost_weight=1e-4,
@@ -131,6 +132,7 @@ class SwimmerEnv(mujoco_env.MujocoEnv, utils.EzPickle):
         exclude_current_positions_from_observation=True,
     ):
         utils.EzPickle.__init__(**locals())
+        self.render = render
 
         self._forward_reward_weight = forward_reward_weight
         self._ctrl_cost_weight = ctrl_cost_weight

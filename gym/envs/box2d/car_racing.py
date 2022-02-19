@@ -150,7 +150,11 @@ class CarRacing(gym.Env, EzPickle):
         "video.frames_per_second": FPS,
     }
 
-    def __init__(self, verbose=1, lap_complete_percent=0.95):
+    def __init__(self,
+                 render: str = "rgb_array",
+                 verbose=1,
+                 lap_complete_percent=0.95,
+                 ):
         EzPickle.__init__(self)
         self.contactListener_keepref = FrictionDetector(self, lap_complete_percent)
         self.world = Box2D.b2World((0, 0), contactListener=self.contactListener_keepref)
@@ -162,6 +166,7 @@ class CarRacing(gym.Env, EzPickle):
         self.car = None
         self.reward = 0.0
         self.prev_reward = 0.0
+        self.render = render
         self.verbose = verbose
         self.new_lap = False
         self.fd_tile = fixtureDef(

@@ -10,8 +10,11 @@ def mass_center(model, sim):
 
 
 class HumanoidEnv(mujoco_env.MujocoEnv, utils.EzPickle):
-    def __init__(self):
-        mujoco_env.MujocoEnv.__init__(self, "humanoid.xml", 5)
+    def __init__(self,
+                 render: str = "rgb_array",
+                 ):
+        self.render = render
+        mujoco_env.MujocoEnv.__init__(self, "humanoid.xml", 5, render)
         utils.EzPickle.__init__(self)
 
     def _get_obs(self):

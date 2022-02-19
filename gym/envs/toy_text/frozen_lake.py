@@ -140,7 +140,13 @@ class FrozenLakeEnv(Env):
 
     metadata = {"render.modes": ["human", "ansi", "rgb_array"]}
 
-    def __init__(self, desc=None, map_name="4x4", is_slippery=True):
+    def __init__(self,
+                 render: str = "rgb_array",
+                 desc=None,
+                 map_name: str = "4x4",
+                 is_slippery: bool = True,
+                 ):
+        self.render = render
         if desc is None and map_name is None:
             desc = generate_random_map()
         elif desc is None:

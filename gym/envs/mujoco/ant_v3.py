@@ -172,6 +172,7 @@ class AntEnv(mujoco_env.MujocoEnv, utils.EzPickle):
 
     def __init__(
         self,
+        render="rgb_array",
         xml_file="ant.xml",
         ctrl_cost_weight=0.5,
         contact_cost_weight=5e-4,
@@ -183,6 +184,7 @@ class AntEnv(mujoco_env.MujocoEnv, utils.EzPickle):
         exclude_current_positions_from_observation=True,
     ):
         utils.EzPickle.__init__(**locals())
+        self.render = render
 
         self._ctrl_cost_weight = ctrl_cost_weight
         self._contact_cost_weight = contact_cost_weight
@@ -199,7 +201,7 @@ class AntEnv(mujoco_env.MujocoEnv, utils.EzPickle):
             exclude_current_positions_from_observation
         )
 
-        mujoco_env.MujocoEnv.__init__(self, xml_file, 5)
+        mujoco_env.MujocoEnv.__init__(self, xml_file, 5, render)
 
     @property
     def healthy_reward(self):

@@ -156,7 +156,10 @@ class AcrobotEnv(core.Env):
     domain_fig = None
     actions_num = 3
 
-    def __init__(self):
+    def __init__(self,
+                 render: str = "rgb_array",
+                 ):
+        self.render = render
         self.screen = None
         self.isopen = True
         high = np.array(

@@ -145,6 +145,7 @@ class Walker2dEnv(mujoco_env.MujocoEnv, utils.EzPickle):
 
     def __init__(
         self,
+        render="rgb_array",
         xml_file="walker2d.xml",
         forward_reward_weight=1.0,
         ctrl_cost_weight=1e-3,
@@ -156,6 +157,7 @@ class Walker2dEnv(mujoco_env.MujocoEnv, utils.EzPickle):
         exclude_current_positions_from_observation=True,
     ):
         utils.EzPickle.__init__(**locals())
+        self.render = render
 
         self._forward_reward_weight = forward_reward_weight
         self._ctrl_cost_weight = ctrl_cost_weight
@@ -172,7 +174,7 @@ class Walker2dEnv(mujoco_env.MujocoEnv, utils.EzPickle):
             exclude_current_positions_from_observation
         )
 
-        mujoco_env.MujocoEnv.__init__(self, xml_file, 4)
+        mujoco_env.MujocoEnv.__init__(self, xml_file, 4, render)
 
     @property
     def healthy_reward(self):

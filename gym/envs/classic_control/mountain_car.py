@@ -58,7 +58,11 @@ class MountainCarEnv(gym.Env):
 
     metadata = {"render.modes": ["human", "rgb_array"], "video.frames_per_second": 30}
 
-    def __init__(self, goal_velocity=0):
+    def __init__(self,
+                 render: str = "rgb_array",
+                 goal_velocity: int = 0,
+                 ):
+        self.render = render
         self.min_position = -1.2
         self.max_position = 0.6
         self.max_speed = 0.07

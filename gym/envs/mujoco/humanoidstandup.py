@@ -174,8 +174,10 @@ class HumanoidStandupEnv(mujoco_env.MujocoEnv, utils.EzPickle):
 
     """
 
-    def __init__(self):
-        mujoco_env.MujocoEnv.__init__(self, "humanoidstandup.xml", 5)
+    def __init__(self,
+                 render: str = "rgb_array",
+                 ):
+        mujoco_env.MujocoEnv.__init__(self, "humanoidstandup.xml", 5, render)
         utils.EzPickle.__init__(self)
 
     def _get_obs(self):

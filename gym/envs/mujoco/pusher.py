@@ -6,9 +6,12 @@ import mujoco_py
 
 
 class PusherEnv(mujoco_env.MujocoEnv, utils.EzPickle):
-    def __init__(self):
+    def __init__(self,
+                 render: str = "rgb_array",
+                 ):
+        self.render = render
         utils.EzPickle.__init__(self)
-        mujoco_env.MujocoEnv.__init__(self, "pusher.xml", 5)
+        mujoco_env.MujocoEnv.__init__(self, "pusher.xml", 5, render)
 
     def step(self, a):
         vec_1 = self.get_body_com("object") - self.get_body_com("tips_arm")
